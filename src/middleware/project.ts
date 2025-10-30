@@ -9,7 +9,7 @@ declare global {
     }
 }
 
-export async function validateProjectExists(req: Request, res: Response, next: NextFunction) {
+export async function projectExists(req: Request, res: Response, next: NextFunction) {
     try {
         const { projectId } = req.params
         const project = await Project.findById(projectId)
@@ -20,6 +20,6 @@ export async function validateProjectExists(req: Request, res: Response, next: N
         req.project = project
         next()
     } catch (error) {
-        res.status(500).json({error: 'Hubo un error'})
+        res.status(500).json({error: 'Hubo un error: ' + error.message})
     }
 }
