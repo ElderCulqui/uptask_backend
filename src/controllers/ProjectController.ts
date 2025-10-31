@@ -50,9 +50,8 @@ export class ProjectController {
                 const error = new Error('Proyecto no encontrado')
                 return res.status(404).json({ msg: error.message })
             }
-
-            project.updateOne(req.body)
-            await project.save()
+            await project.updateOne(req.body)
+            
             return res.send('Proyecto actualizado correctamente')
         } catch (error) {
             console.log(error)
